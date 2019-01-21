@@ -16,4 +16,21 @@ router.post('/', async (req, res) => {
 	res.send(newBook);
 });
 
+router.get('/:id', async (req, res) => {
+	const { id } = req.params;
+	const book = await Book.findById(id);
+	if (!book) return res.status(404).send(`Book with ID: ${id} does not exist!`);
+
+	res.send(book);
+});
+
+router.delete('/:id', async (req, res) => {
+	const { id } = req.params;
+	const book = await Book.findById(id);
+	if (!book) return res.status(404).send(`Book with ID: ${id} does not exist!`);
+
+	const removedBook = await book.destroy();
+	res.send(removedBook);
+});
+
 module.exports = router;
