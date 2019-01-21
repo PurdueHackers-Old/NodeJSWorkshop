@@ -1,23 +1,24 @@
 {
-  "name": "NodeJSWorkshop",
-  "version": "1.0.0",
-  "description": "## Bookstore API",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ashwinGokhale/NodeJSWorkshop.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ashwinGokhale/NodeJSWorkshop/issues"
-  },
-  "homepage": "https://github.com/ashwinGokhale/NodeJSWorkshop#readme",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+	"name": "NodeJSWorkshop",
+	"version": "1.0.0",
+	"description": "## Bookstore API",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ashwinGokhale/NodeJSWorkshop.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ashwinGokhale/NodeJSWorkshop/issues"
+	},
+	"homepage": "https://github.com/ashwinGokhale/NodeJSWorkshop#readme",
+	"dependencies": {
+		"express": "^4.16.4"
+	}
 }
