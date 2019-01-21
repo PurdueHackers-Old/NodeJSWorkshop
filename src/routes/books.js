@@ -7,4 +7,13 @@ router.get('/', async (req, res) => {
 	res.send(books);
 });
 
+router.post('/', async (req, res) => {
+	const { title, author } = req.body;
+	if (!title) return res.status(400).send('Please provide a title');
+	if (!author) return res.status(400).send('Please provide a author');
+
+	const newBook = await Book.create({ title, author });
+	res.send(newBook);
+});
+
 module.exports = router;
