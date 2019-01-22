@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node src/index.js",
 		"dev": "nodemon -w src",
-		"initialize": "sequelize --options-path=./src/config/options.js db:migrate && sequelize --options-path=./src/config/options.js db:seed:all",
+		"initialize": "sequelize db:migrate && sequelize db:seed:all",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -21,6 +21,7 @@
 	},
 	"homepage": "https://github.com/ashwinGokhale/NodeJSWorkshop#readme",
 	"dependencies": {
+		"bcrypt": "^3.0.3",
 		"dotenv": "^6.2.0",
 		"express": "^4.16.4",
 		"sequelize": "^4.42.0",
