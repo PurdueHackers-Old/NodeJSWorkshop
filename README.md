@@ -1,6 +1,7 @@
 # NodeJSWorkshop
 
 ## Bookstore API
+- Gitbook associated with this workshop: https://purduehackers.gitbook.io/tutorials/nodejs-bookstore-workshop/prerequisites
 
 ### Prerequisites:
 
@@ -20,3 +21,12 @@
 	 
 2. Text Editor
 	- [VSCode](https://code.visualstudio.com/download) is highly recommended
+
+3. HTTP Client
+	- [Postman](https://www.getpostman.com/downloads/) or [Insomnia](https://insomnia.rest/download/) are highly recommended
+
+### Getting Started
+- Each step is broken up into its own git branch, so if you get stuck at any point, you can just run:
+```bash
+$ git checkout step(1,2,etc...)
+```
