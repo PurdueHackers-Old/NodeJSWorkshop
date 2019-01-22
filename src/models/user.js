@@ -29,13 +29,19 @@ const User = sequelize.define(
 			withPassword: {
 				attributes: {}
 			}
-		},
-		instanceMethods: {
-			comparePassword: async function(password) {
-				return password && bcrypt.compareSync(password, this.password);
-			}
 		}
 	}
 );
+
+User.prototype.comparePassword = function(password) {
+	return password && bcrypt.compareSync(password, this.password);
+};
+
+User.prototype.toJSON = function() {
+	const values = Object.assign({}, this.get());
+
+	delete values.password;
+	return values;
+};
 
 module.exports = User;
