@@ -24,6 +24,20 @@ router.get('/:id', async (req, res) => {
 	res.send(book);
 });
 
+router.put('/:id', async (req, res) => {
+	const { id } = req.params;
+	const { title, author } = req.body;
+
+	const book = await Book.findById(id);
+	if (!book) return res.status(400).send(`Book with ID: ${id} does not exist!`);
+
+	if (title) book.title = title;
+	if (author) book.author = author;
+	await book.save();
+
+	res.send(book);
+});
+
 router.delete('/:id', async (req, res) => {
 	const { id } = req.params;
 	const book = await Book.findById(id);
