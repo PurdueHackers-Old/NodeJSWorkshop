@@ -1,0 +1,302 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Bookstore API",
+		"version": "1.0.0",
+		"title": "Bookstore",
+		"contact": {
+			"email": "phackers@purdue.edu"
+		}
+	},
+	"host": "virtserver.swaggerhub.com",
+	"basePath": "/pduangsu/bookstore/1.0.0",
+	"tags": [
+		{
+			"name": "bookstore",
+			"description": "Operations related to managing bookstore"
+		}
+	],
+	"schemes": ["https", "http"],
+	"paths": {
+		"/api/books/": {
+			"get": {
+				"tags": ["bookstore"],
+				"summary": "retrieves all the books in the store",
+				"description": "Searches and returns all the books stored in the database",
+				"produces": ["application/json"],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "returns all books",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/book"
+							}
+						}
+					},
+					"400": {
+						"description": "bad input parameter"
+					}
+				}
+			},
+			"post": {
+				"tags": ["bookstore"],
+				"summary": "creates a book",
+				"description": "Adds an item to the system",
+				"consumes": ["application/x-www-form-urlencoded"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Book title and author",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/book"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success, returns created book",
+						"schema": {
+							"$ref": "#/definitions/book"
+						}
+					},
+					"400": {
+						"description": "missing parameters"
+					}
+				}
+			}
+		},
+		"/api/books/{id}": {
+			"get": {
+				"tags": ["bookstore"],
+				"summary": "finds book by ID",
+				"description": "Returns the book that matches the iD",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of book to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success, returns found book",
+						"schema": {
+							"$ref": "#/definitions/book"
+						}
+					},
+					"400": {
+						"description": "book with the specified ID does not exist"
+					}
+				}
+			},
+			"put": {
+				"tags": ["bookstore"],
+				"summary": "updates book by ID",
+				"description": "Updates the book that matches the iD",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of book to update",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Updated book title and author",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/book"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success, returns updated book",
+						"schema": {
+							"$ref": "#/definitions/book"
+						}
+					},
+					"400": {
+						"description": "book with the specified ID does not exist"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["bookstore"],
+				"summary": "deletes book by ID",
+				"description": "Deletes the book that matches the iD",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of book to delete",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success, returns deleted book",
+						"schema": {
+							"$ref": "#/definitions/book"
+						}
+					},
+					"400": {
+						"description": "book with the specified ID does not exist"
+					}
+				}
+			}
+		},
+		"/api/auth/signup": {
+			"post": {
+				"tags": ["Authorization"],
+				"summary": "Creates a new user",
+				"description": "Signup as a new user",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "user",
+						"description": "The user to create.",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/user_1"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success, returns new user",
+						"schema": {
+							"$ref": "#/definitions/user"
+						}
+					},
+					"401": {
+						"description": "User with that username already exists"
+					}
+				}
+			}
+		},
+		"/api/auth/login": {
+			"post": {
+				"tags": ["Authorization"],
+				"summary": "Logs in a user",
+				"description": "Logs in a user",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "user",
+						"description": "The user to create.",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/user_2"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success, returns new user",
+						"schema": {
+							"$ref": "#/definitions/user"
+						}
+					},
+					"401": {
+						"description": "User with that username does not exist"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"user": {
+			"required": ["username"],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"format": "int64",
+					"example": 0
+				},
+				"username": {
+					"type": "string",
+					"example": "TestUsername123"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2019-01-24T11:59:43.10-05:00"
+				},
+				"updaredAt": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2019-01-24T12:03:07.10-05:00"
+				}
+			}
+		},
+		"book": {
+			"required": ["author", "title"],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"format": "int64",
+					"example": 0
+				},
+				"title": {
+					"type": "string",
+					"example": "Harry Potter"
+				},
+				"author": {
+					"type": "string",
+					"example": "JK Rowling"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2019-01-24T11:59:43.10-05:00"
+				},
+				"updaredAt": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2019-01-24T12:03:07.10-05:00"
+				}
+			}
+		},
+		"user_1": {
+			"type": "object",
+			"required": ["username"],
+			"properties": {
+				"username": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			}
+		},
+		"user_2": {
+			"type": "object",
+			"required": ["username"],
+			"properties": {
+				"username": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

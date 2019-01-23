@@ -7,19 +7,20 @@
 		"start": "node src/index.js",
 		"dev": "nodemon -w src",
 		"initialize": "sequelize db:migrate && sequelize db:seed:all",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"postinstall": "npm run initialize"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ashwinGokhale/NodeJSWorkshop.git"
+		"url": "git+https://github.com/PurdueHackers/NodeJSWorkshop.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/ashwinGokhale/NodeJSWorkshop/issues"
+		"url": "https://github.com/PurdueHackers/NodeJSWorkshop/issues"
 	},
-	"homepage": "https://github.com/ashwinGokhale/NodeJSWorkshop#readme",
+	"homepage": "https://github.com/PurdueHackers/NodeJSWorkshop#readme",
 	"dependencies": {
 		"bcrypt": "^3.0.3",
 		"dotenv": "^6.2.0",
@@ -28,10 +29,11 @@
 		"passport": "^0.4.0",
 		"passport-jwt": "^4.0.0",
 		"sequelize": "^4.42.0",
-		"sqlite3": "^4.0.6"
+		"sequelize-cli": "^5.4.0",
+		"sqlite3": "^4.0.6",
+		"swagger-ui-express": "^4.0.2"
 	},
 	"devDependencies": {
-		"nodemon": "^1.18.9",
-		"sequelize-cli": "^5.4.0"
+		"nodemon": "^1.18.9"
 	}
 }
