@@ -313,6 +313,6 @@
 			}
 		}
 	},
-	"host": "ph-bookstore.herokuapp.com",
+	"host": "ph-bookstore.herokuapp.com/v2",
 	"schemes": ["https"]
 }
