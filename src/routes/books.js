@@ -1,28 +1,29 @@
 const express = require('express');
 const { auth } = require('../middleware/passport');
+const { success, failure } = require('../utils');
 const Book = require('../models/book');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
 	const books = await Book.findAll();
-	res.send(books);
+	return success(res, books);
 });
 
 router.post('/', auth(), async (req, res) => {
 	const { title, author } = req.body;
-	if (!title) return res.status(400).send('Please provide a title');
-	if (!author) return res.status(400).send('Please provide a author');
+	if (!title) return failure(res, 400, 'Please provide a title');
+	if (!author) return failure(res, 400, 'Please provide a author');
 
 	const newBook = await Book.create({ title, author });
-	res.send(newBook);
+	return success(res, newBook);
 });
 
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
 	const book = await Book.findById(id);
-	if (!book) return res.status(404).send(`Book with ID: ${id} does not exist!`);
+	if (!book) return failure(res, 404, `Book with ID: ${id} does not exist!`);
 
-	res.send(book);
+	return success(res, book);
 });
 
 router.put('/:id', auth(), async (req, res) => {
@@ -30,22 +31,22 @@ router.put('/:id', auth(), async (req, res) => {
 	const { title, author } = req.body;
 
 	const book = await Book.findById(id);
-	if (!book) return res.status(400).send(`Book with ID: ${id} does not exist!`);
+	if (!book) return failure(res, 404, `Book with ID: ${id} does not exist!`);
 
 	if (title) book.title = title;
 	if (author) book.author = author;
 	await book.save();
 
-	res.send(book);
+	return success(res, book);
 });
 
 router.delete('/:id', auth(), async (req, res) => {
 	const { id } = req.params;
 	const book = await Book.findById(id);
-	if (!book) return res.status(404).send(`Book with ID: ${id} does not exist!`);
+	if (!book) return failure(res, 404, `Book with ID: ${id} does not exist!`);
 
 	const removedBook = await book.destroy();
-	res.send(removedBook);
+	return success(res, removedBook);
 });
 
 module.exports = router;
