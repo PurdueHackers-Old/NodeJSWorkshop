@@ -14,9 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passportMiddleware(passport).initialize());
 app.use(extractUser());
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/books', books);
 app.use('/api/auth', auth);
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT, () => {
 	console.log(`Listening on port: ${PORT}`);
