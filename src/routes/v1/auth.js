@@ -1,8 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const { SECRET, EXPIRES_IN } = require('../config');
-const { success, failure } = require('../utils');
-const User = require('../models/user');
+const { SECRET, EXPIRES_IN } = require('../../config');
+const { success, failure } = require('../../utils');
+const User = require('../../models/user');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {

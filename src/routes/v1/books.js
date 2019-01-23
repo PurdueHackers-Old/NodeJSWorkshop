@@ -1,7 +1,6 @@
 const express = require('express');
-const { auth } = require('../middleware/passport');
-const { success, failure } = require('../utils');
-const Book = require('../models/book');
+const { success, failure } = require('../../utils');
+const Book = require('../../models/book');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -9,7 +8,7 @@ router.get('/', async (req, res) => {
 	return success(res, books);
 });
 
-router.post('/', auth(), async (req, res) => {
+router.post('/', async (req, res) => {
 	const { title, author } = req.body;
 	if (!title) return failure(res, 400, 'Please provide a title');
 	if (!author) return failure(res, 400, 'Please provide a author');
@@ -26,7 +25,7 @@ router.get('/:id', async (req, res) => {
 	return success(res, book);
 });
 
-router.put('/:id', auth(), async (req, res) => {
+router.put('/:id', async (req, res) => {
 	const { id } = req.params;
 	const { title, author } = req.body;
 
@@ -40,7 +39,7 @@ router.put('/:id', auth(), async (req, res) => {
 	return success(res, book);
 });
 
-router.delete('/:id', auth(), async (req, res) => {
+router.delete('/:id', async (req, res) => {
 	const { id } = req.params;
 	const book = await Book.findById(id);
 	if (!book) return failure(res, 404, `Book with ID: ${id} does not exist!`);
