@@ -314,5 +314,5 @@
 		}
 	},
 	"host": "ph-bookstore.herokuapp.com",
-	"schemes": ["http"]
+	"schemes": ["http", "https"]
 }
